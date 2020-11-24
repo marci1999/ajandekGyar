@@ -65,6 +65,7 @@ ORDER BY nev
                     /*Lehessen:
 - Adjándékot törölni
 * A lista kiválasztás alapján
+
 - Ajándék részletes adatainak megjelenítése
 * ID, név, üzlet
 * Ha nincs üzlet (== null), akkor "Saját készítésű"
@@ -92,7 +93,7 @@ VALUES (@nev, @uzlet)
                 comm.CommandText = sql;
                 comm.Parameters.AddWithValue("@nev", tBNev.Text);
                 comm.Parameters.AddWithValue("@uzlet", null);
-                var writer = comm.ExecuteNonQuery();
+                comm.ExecuteNonQuery();
             }
             else
             {
@@ -104,11 +105,37 @@ VALUES (@nev, @uzlet)
                 comm.CommandText = sql;
                 comm.Parameters.AddWithValue("@nev", tBNev.Text);
                 comm.Parameters.AddWithValue("@uzlet", tBUzlet.Text);
-                var writer = comm.ExecuteNonQuery();
+                comm.ExecuteNonQuery();
             }
 
             ajandekListBox.Items.Clear();
             AdatBetoltes();
+        }
+
+        private void bDelete_Click(object sender, EventArgs e)
+        {
+            string sql = @"
+DELETE 
+FROM `ajandek` 
+WHERE `id` = @id
+";
+
+            var comm = this.conn.CreateCommand();
+            comm.CommandText = sql;
+            var ajandek = (Ajandek)ajandekListBox.SelectedItem;
+            comm.Parameters.AddWithValue("@id", ajandek.Id);
+            comm.ExecuteNonQuery();
+
+            ajandekListBox.SelectedIndex = -1;
+            bDelete.Visible = false;
+
+            ajandekListBox.Items.Clear();
+            AdatBetoltes();
+        }
+
+        private void ajandekListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bDelete.Visible = true;
         }
     }
 }

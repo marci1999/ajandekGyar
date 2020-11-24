@@ -35,6 +35,7 @@
             this.cBSajat = new System.Windows.Forms.CheckBox();
             this.lSzoveg1 = new System.Windows.Forms.Label();
             this.lSzoveg2 = new System.Windows.Forms.Label();
+            this.bDelete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ajandekListBox
@@ -44,6 +45,7 @@
             this.ajandekListBox.Name = "ajandekListBox";
             this.ajandekListBox.Size = new System.Drawing.Size(237, 238);
             this.ajandekListBox.TabIndex = 0;
+            this.ajandekListBox.SelectedIndexChanged += new System.EventHandler(this.ajandekListBox_SelectedIndexChanged);
             // 
             // bEnter
             // 
@@ -97,11 +99,23 @@
             this.lSzoveg2.TabIndex = 6;
             this.lSzoveg2.Text = "üzlet neve";
             // 
+            // bDelete
+            // 
+            this.bDelete.Location = new System.Drawing.Point(14, 257);
+            this.bDelete.Name = "bDelete";
+            this.bDelete.Size = new System.Drawing.Size(75, 23);
+            this.bDelete.TabIndex = 7;
+            this.bDelete.Text = "töröl";
+            this.bDelete.UseVisualStyleBackColor = true;
+            this.bDelete.Visible = false;
+            this.bDelete.Click += new System.EventHandler(this.bDelete_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.bDelete);
             this.Controls.Add(this.lSzoveg2);
             this.Controls.Add(this.lSzoveg1);
             this.Controls.Add(this.cBSajat);
@@ -125,6 +139,7 @@
         private System.Windows.Forms.CheckBox cBSajat;
         private System.Windows.Forms.Label lSzoveg1;
         private System.Windows.Forms.Label lSzoveg2;
+        private System.Windows.Forms.Button bDelete;
     }
 }
 
